@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/styles.css">
         <!--CSS Normalize-->
         <link rel="stylesheet" href="node_modules/modern-normalize/modern-normalize.css">
-        <title>Web Studio HW4</title>
+        <title>Web Studio HW5</title>
     </head>
     <body>  
         <header class="container page-header"> 
@@ -25,7 +25,7 @@
                     <nav> 
                         <ul class="page-nav"> 
                             <li>
-                                <a class="nav-link links" href="index.html" rel="Home Page">Studio</a>
+                                <a class="nav-link links nav-active" href="index.html" rel="Home Page">Studio</a>
                             </li>
                             <li>
                                 <a class="nav-link links" href="portfolio.html" rel="Portfolio">Portfolio</a>
@@ -47,7 +47,17 @@
             <!--hero banner section -->
             <section class="section hero hero-container">
                 <h1>Effective Solutions<br>for Your Business</h1>
-                <button class="cta" type="button">Order Service</button>
+            <!--modal-->
+                <button class="cta" type="button" data-modal-open>Order Service</button>
+                <div class="backdrop is-hidden" data-modal>
+                    <div class="modal">
+                        <button type="button" class="modal-close" data-modal-close>
+                            <svg class="modal-close-icon" width="10" height="10">
+                                <use href="./images/icons.svg#close"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </section>
             <!--core values section-->
             <section class="container section"> 
@@ -323,5 +333,7 @@
                 </div>
             </div>
         </footer>
+        <!--modal script-->
+        <script src="./js/modal.js"></script>
     </body>
 </html>

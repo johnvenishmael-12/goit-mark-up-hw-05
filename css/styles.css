@@ -19,7 +19,9 @@
         --white: #fff;
         --slate: #434455;
         --cornflower: #e7e9fc;
-        --cloud: #f4f4fd;     
+        --cloud: #f4f4fd;   
+        --dairy: #fcfcfc;
+                
 }
 
 body {  
@@ -125,6 +127,7 @@ button {
         display: flex;
         background: var(--white, #fff);
         border-bottom: 1px solid var(--CORNFLOWER, #E7E9FC); 
+        margin-bottom: 0;
 }
 
 .d-flex {
@@ -169,43 +172,62 @@ button {
 
 /* navigation */
 /* unvisited link */
-.nav-link:link {
-        text-decoration: none;
+.nav-link {
         color: var(--slate);
 }
 
-/* visited link */
-/* .nav-link:visited {
-        text-decoration: none;
-        background-color: transparent;
+/* visited link
+.nav-link:visited {
         color: var(--ocean);
 } */
 
 /* mouse over link */
 .nav-link:hover,
 .nav-link:focus {
-        text-decoration: none;
-        background-color: transparent;
         color: var(--ocean);
+        
+}
+
+.nav-link:hover::after {
+        content:"";
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 2px;
+        width: 100%;
+        background-color: var(--ocean);
+        position: relative;
+        top: 25px;
+        bottom: 0;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 /* selected link */
-.nav-link:active {
-        text-decoration: none;
-        background-color: transparent;
-        color: var(--ocean);
+.nav-active {
+        color: var(--ocean);   
+}
+
+.nav-active::after {
+        content:"";
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 2px;
+        background-color: var(--ocean);
+        position: relative;
+        top: 25px;
+        bottom: 0;
 }
 
 /* contacts */
 /* unvisited link */ 
-.contacts-link:link { text-decoration: none;
-
+.contacts-link:link { 
+        text-decoration: none;
 }
 
 /* visited link */
 .contacts-link:visited {
-        text-decoration: none;
-        background-color: transparent;
         color: var(--ocean);
 
 }
@@ -213,17 +235,15 @@ button {
 /* mouse over link */
 .contacts-link:hover, 
 .contacts-link:focus {
-        background-color: transparent;
-        text-decoration: none; 
         color: var(--ocean);
 }
 
 /* selected link */
 .contacts-link:active {
-        background-color: transparent;
-        text-decoration: none; 
         color: var(--ocean);
 }
+
+
 
 /* HERO BANNER */
 
@@ -274,6 +294,62 @@ button {
         background-color: var(--ocean, #404bbf);
         border: 2px solid var(--iris, #4d5ae5);
         box-sizing: border-box;
+}
+
+/* MODAL */
+.backdrop {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(46, 47, 66, 0.4);
+        opacity: 1;
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+}
+
+.modal {
+        position: absolute;
+        padding: 24px;
+        min-width: 408px;
+        min-height: 584px;
+        background-color: var(--dairy, #fcfcfc);
+        box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
+        0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+        border-radius: 4px;
+
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        /* transform: translate(-50%, -50%) scale(1); */
+}
+
+.is-hidden {
+        visibility: none;
+        opacity: 0;
+        pointer-events: none;
+}
+
+.modal-close {
+        width: 30px;
+        height: 30px;
+       
+        border-radius: 100%;
+        display: block;
+        margin-left: auto;
+        
+        
+}
+
+.modal-close:hover,
+.modal-close:focus {
+        background-color: var(--ocean);
+        color: var(--white);
+}
+
+.modal-close-icon {
+        fill:currentColor;
 }
 
 /* CORE VALUES, WHAT WE DOING, OUR TEAM, CLIENT*/
@@ -484,7 +560,7 @@ h2 {
         border-color: var(--ocean, #404bbf);
 }
 
-.active {
+.menu-active {
         background: var(--ocean, #404bbf);
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.12),
                 0px 2px 1px 0px rgba(0, 0, 0, 0.08), 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
@@ -517,10 +593,31 @@ h2 {
         0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
-/*
-@media screen and (min-width: 767px) {
-        body { 
-                background-color: red;
-        }
+
+.project-cover-image {
+        position: relative;
+        overflow: hidden;   
 }
-*/
+
+.project-cover-text {
+        position: absolute;
+        top: 0;
+        padding: 40px 32px;
+        width: 100%;
+        height: 100%;
+        background-color: var(--iris);
+        color: var(--cloud);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.32px;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-overlay:hover .project-cover-text {
+        opacity: 0.9;
+        transform: translateY(0);
+}
+
